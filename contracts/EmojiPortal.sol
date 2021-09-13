@@ -13,6 +13,7 @@ contract EmojiPortal {
         address sender;
         string message;
         uint timestamp;
+        string color;
     }
 
     Emoji[] emojis;
@@ -21,12 +22,12 @@ contract EmojiPortal {
         console.log("Constructed!");
     }
 
-    function sendEmoji(string memory _message) public {
+    function sendEmoji(string memory _message, string memory _color) public {
         totalEmojis += 1;
         console.log('%s emoji\'d everyone w/ message: "%s"', msg.sender, _message);
 
         // Where we store the emoji data in the array
-        emojis.push(Emoji(msg.sender, _message, block.timestamp));
+        emojis.push(Emoji(msg.sender, _message, block.timestamp, _color));
 
         emit NewEmoji(msg.sender, block.timestamp, _message);
     }
